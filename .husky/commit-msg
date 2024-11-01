@@ -1,0 +1,2 @@
+# 检查git提交消息
+npx --no-install commitlint --edit $1
