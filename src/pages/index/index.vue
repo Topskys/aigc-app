@@ -2,7 +2,7 @@
   <view class="content">
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
-      <text class="title">{{ title }}</text>
+      <text class="title color-red">{{ title }}</text>
     </view>
   </view>
 </template>
@@ -34,8 +34,8 @@ const title = ref("Hello");
   justify-content: center;
 }
 
-.title {
+/* .title {
   font-size: 36rpx;
   color: #8f8f94;
-}
+} */
 </style>
