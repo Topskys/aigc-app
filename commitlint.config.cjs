@@ -60,7 +60,7 @@ module.exports = {
         { value: "ci",       name: "集成:     🎡  修改 CI 配置、脚本",  emoji: ":ferris_wheel:"},
         { value: "revert",   name: "回退:     ⏪️  回滚 commit",emoji: ":rewind:"},
         { value: "chore",    name: "其他:     🔨  对构建过程或辅助工具和库的更改（不影响源文件、测试用例）", emoji: ":hammer:"},
-        { value: "workflow", name: "工作流:   664  优化 CI 配置", emoji: ":construction_worker:"},
+        { value: "workflow", name: "工作流:    🛠️  优化 CI 配置", emoji: ":construction_worker:"},
         { value: "types",    name: "类型定义:  📚  类型定义文件更改", emoji: ":books:"},
         { value: "release",  name: "发布:     🏹️  发布/版本标签", emoji: ":dart:"},
         { value: "wip",     name: "开发中:   ⚠️  开发中（还未完成）", emoji: ":warning:"},
