@@ -2,12 +2,17 @@
   <view class="content">
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
-      <text class="title color-red">{{ title }}</text>
+      <text class="title color-red">{{ title }} {{ userInfo.username }}</text>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
+import { useUserStore } from "@/store/modules/user";
+
+const { userInfo } = useUserStore();
+console.log(userInfo);
+
 const title = ref("Hello");
 </script>
 

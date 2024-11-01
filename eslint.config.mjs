@@ -31,22 +31,6 @@ export default [
   // 通用 JavaScript/TypeScript 配置
   {
     ...js.configs.recommended,
-    ignores: [
-      "dist",
-      "/public",
-      "**/*.min.js",
-      "**/*.config.mjs",
-      "**/*.tsbuildinfo",
-      "/src/manifest.json",
-      "node_modules",
-      "*.md",
-      ".vscode",
-      ".idea",
-      "docs",
-      ".local",
-      "Dockerfile",
-      "*.d.ts"
-    ],
     languageOptions: {
       globals: {
         ...globals.browser, // 浏览器变量 (window, document 等)
@@ -69,6 +53,22 @@ export default [
         },
       ],
     },
+    ignores: [
+      "dist",
+      "/public",
+      "**/*.min.js",
+      "**/*.config.mjs",
+      "**/*.tsbuildinfo",
+      "/src/manifest.json",
+      "node_modules",
+      "*.md",
+      ".vscode",
+      ".idea",
+      "docs",
+      ".local",
+      "Dockerfile",
+      "*.d.ts"
+    ],
   },
 
   // TypeScript 配置
@@ -92,6 +92,7 @@ export default [
         "error",
         { disallowTypeAnnotations: false, fixStyle: "inline-type-imports" },
       ], // 统一类型导入风格
+      "@typescript-eslint/no-unused-vars": "off", // 允许未使用的变量
     },
   },
 
@@ -141,13 +142,4 @@ export default [
       ], // 自闭合标签
     },
   },
-  // {
-  //   // 语言选项配置，定义全局变量
-  //    languageOptions: {
-  //      globals: {
-  //        ...autoImportConfig.globals, // 自动导入的全局变量
-  //        uni: "readonly", // uni-app 全局对象
-  //      },
-  //    },
-  //  },
 ];

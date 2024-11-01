@@ -13,7 +13,7 @@ export default defineConfig(async () => {
       UnoCss(),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
-        imports: ["vue", "uni-app"], // 自动导入 Vue 和 UniApp 的 API
+        imports: ["vue", "uni-app", "pinia"], // 自动导入 Vue 和 UniApp 的 API
         dts: "src/types/auto-imports.d.ts", // 自动生成类型声明文件
         eslintrc: {
           enabled: true, // 生成 ESLint 配置文件
