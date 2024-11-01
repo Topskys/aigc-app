@@ -32,18 +32,27 @@ export default [
   {
     ...js.configs.recommended,
     ignores: [
-      "/dist",
+      "dist",
       "/public",
-      "/node_modules",
       "**/*.min.js",
       "**/*.config.mjs",
       "**/*.tsbuildinfo",
       "/src/manifest.json",
+      "node_modules",
+      "*.md",
+      ".vscode",
+      ".idea",
+      "docs",
+      ".local",
+      "Dockerfile",
+      "*.d.ts"
     ],
     languageOptions: {
       globals: {
         ...globals.browser, // 浏览器变量 (window, document 等)
         ...globals.node, // Node.js 变量 (process, require 等)
+        ...autoImportConfig.globals, // 自动导入的全局变量
+         uni: "readonly", // uni-app 全局对象
       },
     },
     plugins: {
@@ -132,12 +141,13 @@ export default [
       ], // 自闭合标签
     },
   },
-  {
-    // 语言选项配置，定义全局变量
-     languageOptions: {
-       globals: {
-         ...autoImportConfig.globals, // 自动导入的全局变量
-       },
-     },
-   },
+  // {
+  //   // 语言选项配置，定义全局变量
+  //    languageOptions: {
+  //      globals: {
+  //        ...autoImportConfig.globals, // 自动导入的全局变量
+  //        uni: "readonly", // uni-app 全局对象
+  //      },
+  //    },
+  //  },
 ];

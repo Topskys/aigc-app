@@ -1,9 +1,9 @@
 {
-    // ctrl + shift + p > 输入settings.json > 打开工作区设置文件
-    "editor.formatOnSave": true, // 保存格式化文件
-    "editor.defaultFormatter": "esbenp.prettier-vscode", // 指定 prettier 为所有文件默认格式化器
-    "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": true 
+  // ctrl + shift + p > 输入settings.json > 打开工作区设置文件
+  "editor.formatOnSave": true, // 保存格式化文件
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // 指定 prettier 为所有文件默认格式化器
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
   },
   "stylelint.validate": ["css", "scss", "vue", "html"]
 }
