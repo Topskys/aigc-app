@@ -1,19 +1,24 @@
+// eslint.config.mjs
 import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
+import js from "@eslint/js";
+
+// ESLint 核心插件
 import pluginVue from "eslint-plugin-vue";
+import pluginTypeScript from "@typescript-eslint/eslint-plugin";
 
+// Prettier 插件及配置
+import configPrettier from "eslint-config-prettier";
+import pluginPrettier from "eslint-plugin-prettier";
 
-/** @type {import('eslint').Linter.Config[]} */
+// 解析器
+import * as parserVue from "vue-eslint-parser";
+import * as parserTypeScript from "@typescript-eslint/parser";
+
+// 定义 ESLint 配置
 export default [
-  {files: ["**/*.{js,mjs,cjs,ts,vue}"]},
-  {languageOptions: { globals: globals.browser }},
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...pluginVue.configs["flat/essential"],
-  {files: ["**/*.vue"], languageOptions: {parserOptions: {parser: tseslint.parser}}},
-  // 添加忽略eslint检查的文件或目录
+  // 通用 JavaScript/TypeScript 配置
   {
+    ...js.configs.recommended,
     ignores: [
       "/dist",
       "/public",
@@ -22,28 +27,97 @@ export default [
       "**/*.config.mjs",
       "**/*.tsbuildinfo",
       "/src/manifest.json",
-    ]
-  },
-  // 自定义规则
-  {
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.browser, // 浏览器变量 (window, document 等)
+        ...globals.node, // Node.js 变量 (process, require 等)
+      },
+    },
+    plugins: {
+      prettier: pluginPrettier,
+    },
     rules: {
-      quotes: ["error", "double"], // 强制使用双引号
-      "quote-props": ["error", "always"], // 强制对象的属性名使用引号
-      semi: ["error", "always"], // 要求使用分号
-      indent: ["error", 2], // 使用两个空格进行缩进
-      "no-multiple-empty-lines": ["error", { max: 1 }], // 不允许多个空行
-      "no-trailing-spaces": "error", // 不允许行尾有空格
+      ...configPrettier.rules,
+      ...pluginPrettier.configs.recommended.rules,
+      "no-debug": "off", // 允许使用 debugger
+      "prettier/prettier": [
+        "error",
+        {
+          endOfLine: "auto", // 解决换行符冲突
+        },
+      ],
+    },
+  },
 
-      // TypeScript 规则
-      "@typescript-eslint/no-explicit-any": "off", // 禁用 no-explicit-any 规则，允许使用 any 类型
-      "@typescript-eslint/explicit-function-return-type": "off", // 不强制要求函数必须明确返回类型
-      "@typescript-eslint/no-empty-interface": "off", // 禁用 no-empty-interface 规则，允许空接口声明
+  // TypeScript 配置
+  {
+    files: ["**/*.?([cm])ts"],
+    languageOptions: {
+      parser: parserTypeScript,
+      parserOptions: {
+        sourceType: "module",
+      },
+    },
+    plugins: {
+      "@typescript-eslint": pluginTypeScript,
+    },
+    rules: {
+      ...pluginTypeScript.configs.recommended.rules,
+      "@typescript-eslint/no-explicit-any": "off", // 允许使用 any
+      "@typescript-eslint/no-empty-function": "off", // 允许空函数
       "@typescript-eslint/no-empty-object-type": "off", // 允许空对象类型
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { disallowTypeAnnotations: false, fixStyle: "inline-type-imports" },
+      ], // 统一类型导入风格
+    },
+  },
 
-      // Vue 规则
-      "vue/multi-word-component-names": "off", // 关闭多单词组件名称的限制
-      "vue/html-indent": ["error", 2], // Vue 模板中的 HTML 缩进使用两个空格
-      "vue/no-v-html": "off", // 允许使用 v-html (根据实际项目需要)
+  // TypeScript 声明文件的特殊配置
+  {
+    files: ["**/*.d.ts"],
+    rules: {
+      "eslint-comments/no-unlimited-disable": "off", // 关闭 eslint 注释相关规则
+      "unused-imports/no-unused-vars": "off", // 忽略未使用的导入
+    },
+  },
+
+  // JavaScript (commonjs) 配置
+  {
+    files: ["**/*.?([cm])js"],
+    rules: {
+      "@typescript-eslint/no-var-requires": "off", // 允许 require
+    },
+  },
+
+  // Vue 文件配置
+  {
+    files: ["**/*.vue"],
+    languageOptions: {
+      parser: parserVue,
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        sourceType: "module",
+      },
+    },
+    plugins: {
+      vue: pluginVue,
+    },
+    processor: pluginVue.processors[".vue"],
+    rules: {
+      ...pluginVue.configs["vue3-recommended"].rules,
+      "vue/no-v-html": "off", // 允许 v-html
+      "vue/require-default-prop": "off", // 允许没有默认值的 prop
+      "vue/multi-word-component-names": "off", // 关闭组件名称多词要求
+      "vue/html-self-closing": [
+        "error",
+        {
+          html: { void: "always", normal: "always", component: "always" },
+          svg: "always",
+          math: "always",
+        },
+      ], // 自闭合标签
     },
   },
 ];
