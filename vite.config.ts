@@ -1,17 +1,19 @@
 import uni from "@dcloudio/vite-plugin-uni";
 import AutoImport from "unplugin-auto-import/vite";
 import { defineConfig, type UserConfig, type ConfigEnv, loadEnv } from "vite";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => {
   const UnoCss = await import("unocss/vite").then((i) => i.default);
   const env = loadEnv(mode, process.cwd());
+
   return {
     plugins: [
       uni(),
       // https://github.com/unocss/unocss
       UnoCss(),
-      // https://github.com/antfu/unplugin-auto-import
+      // 自动导入
       AutoImport({
         imports: ["vue", "uni-app", "pinia"], // 自动导入 Vue 和 UniApp 的 API
         dts: "src/types/auto-imports.d.ts", // 自动生成类型声明文件
@@ -33,6 +35,11 @@ export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => 
           changeOrigin: true, // 支持跨域
           rewrite: (path) => path.replace(new RegExp("^" + env.VITE_APP_PREFIX_URL), ""), // 去掉前缀
         },
+      },
+    },
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "src"),
       },
     },
   };
