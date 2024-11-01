@@ -43,7 +43,8 @@
     "type-check": "vue-tsc --noEmit",
     "lint:eslint": "npx eslint ./src --cache --max-warnings 0 --fix",
     "format": "prettier ./src --write",
-    "lint:stylelint": "stylelint  \"**/*.{css,scss,vue,html}\" --fix"
+    "lint:stylelint": "stylelint  \"**/*.{css,scss,vue,html}\" --fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4020920240930001",
@@ -78,6 +79,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.30.0",
     "globals": "^15.11.0",
+    "husky": "^9.1.6",
     "postcss": "^8.4.47",
     "postcss-html": "^1.7.0",
     "postcss-scss": "^4.0.9",
