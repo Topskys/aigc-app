@@ -8,7 +8,7 @@ interface ImportMetaEnv {
   /**
    * 请求前缀
    */
-  VITE_APP_PREFIX_API: string;
+  VITE_APP_PREFIX_URL: string;
   /**
    * 服务器URL
    */
