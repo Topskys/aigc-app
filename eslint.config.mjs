@@ -14,6 +14,18 @@ import pluginPrettier from "eslint-plugin-prettier";
 import * as parserVue from "vue-eslint-parser";
 import * as parserTypeScript from "@typescript-eslint/parser";
 
+import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
+
+// 动态读取 .eslintrc-auto-import.json 文件内容
+const autoImportConfig = JSON.parse(
+  readFileSync(
+    resolve(dirname(fileURLToPath(import.meta.url)), ".eslintrc-auto-import.json"),
+    "utf-8",
+  ),
+);
+
 // 定义 ESLint 配置
 export default [
   // 通用 JavaScript/TypeScript 配置
@@ -120,4 +132,12 @@ export default [
       ], // 自闭合标签
     },
   },
+  {
+    // 语言选项配置，定义全局变量
+     languageOptions: {
+       globals: {
+         ...autoImportConfig.globals, // 自动导入的全局变量
+       },
+     },
+   },
 ];
