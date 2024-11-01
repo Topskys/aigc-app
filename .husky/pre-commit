@@ -1,1 +1,4 @@
 echo "Running pre-commit hook ..."
+
+# 执行lint-staged检测和修改暂存区文件
+pnpm run lint:lint-staged
