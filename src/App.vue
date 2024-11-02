@@ -1,13 +1,24 @@
 <script setup lang="ts">
-import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
+import { useGetMenuButtonInfo } from "@/hooks";
+
 onLaunch(() => {
-  console.log("App Launch");
-});
-onShow(() => {
-  console.log("App Show");
-});
-onHide(() => {
-  console.log("App Hide");
+  // 获取微信小城胶囊按钮的信息
+  useGetMenuButtonInfo();
 });
 </script>
-<style></style>
+<style>
+/* 公共样式 */
+view,
+text {
+  font-size: 32rpx;
+}
+
+Image {
+  display: block;
+}
+
+button {
+  /* 去掉 button 默认样式 */
+  /* all: unset; */
+}
+</style>

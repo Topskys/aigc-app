@@ -1,52 +1,61 @@
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title color-red">{{ title }} {{ userInfo.username }}</text>
+  <!-- 顶部导航栏 -->
+  <view class="head-nav">
+    <view class="head-empty-container" />
+    <view class="menu-list text-[#9d9486]">
+      <text v-for="item in menuList" :key="item" class="menu-item font-bold">{{ item }} </text>
     </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
   </view>
+  <!-- 空盒子顶开顶部导航栏覆盖内容 -->
+  <view class="empty-container-height" />
+  <!-- 中间内容区域 -->
+  <view class="content-view">中间内容区域</view>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from "@/store/modules/user";
+import { useGetMenuButtonInfo } from "@/hooks";
 
+const { menuButtonInfo } = useGetMenuButtonInfo();
 const { userInfo } = useUserStore();
 
-const title = ref("Hello");
+console.log(menuButtonInfo);
+const menuList = ref(["我的", "对话", "AI绘画"]);
 </script>
 
-<style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+<style lang="scss" scoped>
+/* stylelint-disable-next-line selector-type-no-unknown */
+page {
+  background-color: #f3f3f3;
 }
 
-.logo {
-  width: 200rpx;
-  height: 200rpx;
-  margin-top: 200rpx;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-  margin-left: auto;
+.head-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  height: v-bind("menuButtonInfo.bottom");
+  background: linear-gradient(#fce7cc, #f3f3f3);
+
+  .head-empty-container {
+    height: v-bind("menuButtonInfo.top");
+  }
+
+  .menu-list {
+    display: flex;
+    align-items: center;
+    height: v-bind("menuButtonInfo.height");
+    padding-left: 20rpx;
+
+    .menu-item:nth-child(2) {
+      margin: 0 60rpx;
+    }
+  }
 }
 
-.text-area {
-  display: flex;
-  justify-content: center;
+.empty-container-height {
+  height: v-bind("menuButtonInfo.bottom");
+  background: #f3f3f3;
 }
-
-/* .title {
-  font-size: 36rpx;
-  color: #8f8f94;
-} */
 </style>

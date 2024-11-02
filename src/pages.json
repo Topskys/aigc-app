@@ -10,7 +10,8 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        // 自定义顶部导航栏
+        "navigationStyle": "custom"
       }
     }
   ],
