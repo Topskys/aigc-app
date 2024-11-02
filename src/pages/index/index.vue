@@ -9,12 +9,17 @@
   <!-- 空盒子顶开顶部导航栏覆盖内容 -->
   <view class="empty-container-height" />
   <!-- 中间内容区域 -->
-  <view class="content-view">中间内容区域</view>
+  <view class="content-view">
+    <!-- <start-page /> -->
+    <chart-area />
+  </view>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from "@/store/modules/user";
 import { useGetMenuButtonInfo } from "@/hooks";
+import startPage from "./components/start-page.vue";
+import chartArea from "./components/chart-area.vue";
 
 const { menuButtonInfo } = useGetMenuButtonInfo();
 const { userInfo } = useUserStore();
