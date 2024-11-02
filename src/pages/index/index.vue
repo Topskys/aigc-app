@@ -12,21 +12,23 @@
   <view class="content-view">
     <!-- <start-page /> -->
     <!-- <chart-area /> -->
-    <ai-drawing />
+    <!-- <ai-drawing /> -->
+    <input-area />
   </view>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from "@/store/modules/user";
-import { useGetMenuButtonInfo } from "@/hooks";
+// import { useGetMenuButtonInfo } from "@/hooks";
 // import startPage from "./components/start-page.vue";
 import chartArea from "./components/chart-area.vue";
 import aiDrawing from "./components/ai-drawing.vue";
+import inputArea from "./components/input-area.vue";
 
-const { menuButtonInfo } = useGetMenuButtonInfo();
+// const { menuButtonInfo } = useGetMenuButtonInfo();
 const { userInfo } = useUserStore();
 
-console.log(menuButtonInfo);
+// console.log(menuButtonInfo);
 const menuList = ref(["我的", "对话", "AI绘画"]);
 </script>
 
@@ -42,17 +44,17 @@ page {
   right: 0;
   left: 0;
   z-index: 999;
-  height: v-bind("menuButtonInfo.bottom");
+  // height: v-bind("menuButtonInfo.bottom");
   background: linear-gradient(#fce7cc, #f3f3f3);
 
   .head-empty-container {
-    height: v-bind("menuButtonInfo.top");
+    // height: v-bind("menuButtonInfo.top");
   }
 
   .menu-list {
     display: flex;
     align-items: center;
-    height: v-bind("menuButtonInfo.height");
+    // height: v-bind("menuButtonInfo.height");
     padding-left: 20rpx;
 
     .menu-item:nth-child(2) {
@@ -62,7 +64,7 @@ page {
 }
 
 .empty-container-height {
-  height: v-bind("menuButtonInfo.bottom");
+  // height: v-bind("menuButtonInfo.bottom");
   background: #f3f3f3;
 }
 </style>

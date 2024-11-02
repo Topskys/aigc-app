@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useGetMenuButtonInfo } from "@/hooks";
+// import { useGetMenuButtonInfo } from "@/hooks";
 
 onLaunch(() => {
   // 获取微信小城胶囊按钮的信息
-  useGetMenuButtonInfo();
+  // useGetMenuButtonInfo();
 });
 </script>
 <style>
