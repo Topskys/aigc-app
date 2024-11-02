@@ -14,7 +14,8 @@
     <!-- <chart-area /> -->
     <!-- <ai-drawing /> -->
     <!-- <input-area /> -->
-    <personal />
+    <!-- <personal /> -->
+    <login />
   </view>
 </template>
 
@@ -26,6 +27,7 @@ import chartArea from "./components/chart-area.vue";
 import aiDrawing from "./components/ai-drawing.vue";
 import inputArea from "./components/input-area.vue";
 import personal from "../personal/index.vue";
+import login from "../login/index.vue";
 
 const { menuButtonInfo } = useGetMenuButtonInfo();
 const { userInfo } = useUserStore();
