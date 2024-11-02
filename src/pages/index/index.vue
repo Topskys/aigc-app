@@ -11,7 +11,8 @@
   <!-- 中间内容区域 -->
   <view class="content-view">
     <!-- <start-page /> -->
-    <chart-area />
+    <!-- <chart-area /> -->
+    <ai-drawing />
   </view>
 </template>
 
@@ -20,6 +21,7 @@ import { useUserStore } from "@/store/modules/user";
 import { useGetMenuButtonInfo } from "@/hooks";
 // import startPage from "./components/start-page.vue";
 import chartArea from "./components/chart-area.vue";
+import aiDrawing from "./components/ai-drawing.vue";
 
 const { menuButtonInfo } = useGetMenuButtonInfo();
 const { userInfo } = useUserStore();
