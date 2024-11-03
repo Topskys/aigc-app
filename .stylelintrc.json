@@ -47,6 +47,7 @@
       {
         "ignoreAtRules": ["apply", "use", "forward"]
       }
-    ]
+    ],
+    "declaration-block-no-duplicate-properties": null
   }
 }

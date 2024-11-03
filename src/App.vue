@@ -1,10 +1,20 @@
 <script setup lang="ts">
-// import { useGetMenuButtonInfo } from "@/hooks";
+import { useGetNavBarInfo } from "@/hooks";
+import { onLaunch, onError, onUnhandledRejection, onPageNotFound, onExit } from "@dcloudio/uni-app";
 
 onLaunch(() => {
-  // 获取微信小城胶囊按钮的信息
-  // useGetMenuButtonInfo();
+  // 初始化
+  useGetNavBarInfo(); // 亦可使用 getApp().globalData
 });
+
+// 监听应用报错
+onError(() => {});
+// 监听未处理的Promise错误
+onUnhandledRejection(() => {});
+// 路由找不到
+onPageNotFound(() => {});
+// 监听应用退出
+onExit(() => {});
 </script>
 <style>
 /* 公共样式 */
